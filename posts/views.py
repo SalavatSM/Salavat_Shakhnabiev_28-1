@@ -3,6 +3,7 @@ from datetime import date
 from django.shortcuts import HttpResponse, redirect, render
 
 from posts.models import Post
+from posts.models import Product
 
 # Create your views here.
 """ MVC - Model View Controller """
@@ -25,3 +26,13 @@ def posts_view(request):
 
         return render(request, 'posts/posts.html', context=context)
 
+
+def products_view(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+
+        context = {
+            'products': products
+        }
+
+        return render(request, 'products/products.html', context=context)

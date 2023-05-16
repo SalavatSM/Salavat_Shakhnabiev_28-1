@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 #from posts.views import hello_view, redirect_to_youtube_view, redirect_to_google, redirect_to_github, helloview, goodby, now_date, now_date_v2
-from posts.views import main_page_view, posts_view
+from posts.views import main_page_view, posts_view, products_view
 
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
@@ -37,5 +37,5 @@ urlpatterns = [
 
     path('', main_page_view),
     path('posts/', posts_view),
-
+    path('products/', products_view),
     ]
