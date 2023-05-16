@@ -1,6 +1,8 @@
 from datetime import date
 
-from django.shortcuts import HttpResponse, redirect
+from django.shortcuts import HttpResponse, redirect, render
+
+from posts.models import Post
 
 # Create your views here.
 """ MVC - Model View Controller """
@@ -8,43 +10,18 @@ from django.shortcuts import HttpResponse, redirect
 """ Controller's """
 
 
-def hello_view(request):
+def main_page_view(request):
     if request.method == 'GET':
-        return HttpResponse('Hello, its my first view! :)')
+        return render(request, 'layouts/index.html')
 
 
-def redirect_to_youtube_view(request):
+def posts_view(request):
     if request.method == 'GET':
-        return redirect('https://www.youtube.com/')
+        posts = Post.objects.all()
 
+        context = {
+            'posts': posts
+        }
 
-def redirect_to_google(request):
-    if request.method == 'GET':
-        return redirect('https://www.google.com/')
-
-
-def redirect_to_github(request):
-    if request.method == 'GET':
-        return redirect('https://www.github.com/')
-
-
-def helloview(request):
-    if request.method == 'GET':
-        return HttpResponse('Hello! Its my project')
-
-
-def now_date(request):
-    if request.method == 'GET':
-        today = date.today()
-        return HttpResponse(str(today))
-
-
-def now_date_v2(request):
-    if request.method == 'GET':
-        return redirect('https://www.calendardate.com/todays.htm')
-
-
-def goodby(request):
-    if request.method == 'GET':
-        return HttpResponse('Goodby user!')
+        return render(request, 'posts/posts.html', context=context)
 
