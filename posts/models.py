@@ -27,3 +27,11 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+
+class Comment(models.Model):
+    text = models.CharField(max_length=256)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.post.title} - {self.text}'
+

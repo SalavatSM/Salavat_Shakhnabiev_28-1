@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+
 
 #from posts.views import hello_view, redirect_to_youtube_view, redirect_to_google, redirect_to_github, helloview, goodby, now_date, now_date_v2
-from posts.views import main_page_view, posts_view, products_view
+from posts.views import main_page_view, posts_view, products_view, post_detail_view
+from study_djangoProject_4month import settings
 
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
@@ -38,4 +41,7 @@ urlpatterns = [
     path('', main_page_view),
     path('posts/', posts_view),
     path('products/', products_view),
+    path('posts/<int:id>/', post_detail_view),
     ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
